@@ -71,7 +71,12 @@ function productRemove(removebuttonId, removeProductId) {
     document.getElementById(removebuttonId).addEventListener('click', function() {
         const removeCart = document.getElementById(removeProductId)
         removeCart.style.display = 'none'
+        document.getElementById('subtotal_price').innerText = '$' + 0;
+        document.getElementById('tax_amount').innerText = '$' + 0;
+        document.getElementById('grand_total').innerText = '$' + 0;
     })
+
+
 
 }
 
