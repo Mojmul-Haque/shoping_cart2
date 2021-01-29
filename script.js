@@ -1,85 +1,81 @@
 //incriment product
 document.getElementById('phn_increase').addEventListener('click', function() {
-        updateProductQuantity('phn_count', true, 1219, 'phone_price')
+    updateProductQuantity('phn_count', true, 300, 'phone_price');
+})
 
-
-
-
-    })
-    //decriment product
+//decriment product
 document.getElementById('phone_decrease').addEventListener('click', function() {
-        updateProductQuantity('phn_count', false, 1219, 'phone_price')
+        updateProductQuantity('phn_count', false, 300, 'phone_price');
     }) //end mobile here;
 
+//incriment casing;
 document.getElementById('case_increase').addEventListener('click', function() {
-        updateProductQuantity('case_count', true, 60, 'case_price')
-    })
-    //decriment product
+    updateProductQuantity('case_count', true, 60, 'case_price')
+})
+
+//decriment casing product
 document.getElementById('case_decrease').addEventListener('click', function() {
         updateProductQuantity('case_count', false, 60, 'case_price')
-
     }) //end mobile casing;
 
 
 // update phoneCountPrice
 function updateProductQuantity(quantityId, isIncrise, productPrice, storePriceid) {
-    const phoneCount = document.getElementById(quantityId)
-    const phoneCountNumber = parseInt(phoneCount.value);
-    let newPhoneCount = phoneCountNumber
+    const quantityInput = document.getElementById(quantityId)
+    const quantityCount = parseInt(quantityInput.value);
+    let newQuantityCount = quantityCount
     if (isIncrise == true) {
-        newPhoneCount = phoneCountNumber + 1
-    } else if (isIncrise == false && newPhoneCount > 0) {
-        newPhoneCount = phoneCountNumber - 1;
+        newQuantityCount = quantityCount + 1
+    } else if (isIncrise == false && newQuantityCount > 0) {
+        newQuantityCount = quantityCount - 1;
     }
-    phoneCount.value = newPhoneCount;
-    const phoneTotalPrice = newPhoneCount * productPrice;
+    quantityInput.value = newQuantityCount;
+    const phoneTotalPrice = newQuantityCount * productPrice;
     document.getElementById(storePriceid).innerText = phoneTotalPrice;
-    return
+
+    // import function for calculate total price;
+    calculateToalPrice()
+}
 
 
+//  calculate total price;
+function calculateToalPrice() {
+    let phnQuantityCount = getQunatityInput('phn_count');
+    //caught caseing price;
+    let caseQuantityCount = getQunatityInput('case_count')
+    const subtotalPrice = phnQuantityCount * 300 + caseQuantityCount * 60;
+
+    // pase the totalprice in subtotal id;
+    document.getElementById('subtotal_price').innerText = '$' + subtotalPrice;
+
+    // calculate tax value
+    const tax = Math.round(subtotalPrice * 0.01)
+    document.getElementById('tax_amount').innerText = '$' + tax;
+
+    // grand total calculate;
+    const grandTotal = subtotalPrice + tax;
+    document.getElementById('grand_total').innerText = '$' + grandTotal
+}
 
 
+// calculate total price
+function getQunatityInput(quantityInputId) {
+    const quantityInput = document.getElementById(quantityInputId);
+    const quantityCount = parseInt(quantityInput.value);
+    return quantityCount
+}
 
+
+//remove prodcut function
+function productRemove(removebuttonId, removeProductId) {
+    document.getElementById(removebuttonId).addEventListener('click', function() {
+        const removeCart = document.getElementById(removeProductId)
+        removeCart.style.display = 'none'
+    })
 
 }
 
 
-
-
-
-
-
-
-// document.getElementById('phn_increase').addEventListener('click', function() {
-//     const phoneCount = document.getElementById('phn_count')
-//     const phoneCountNumber = parseInt(phoneCount.value);
-//     const newPhoneCount = phoneCountNumber + 1;
-//     phoneCount.value = newPhoneCount;
-
-//     //phone price updated
-//     const phonePrice = document.getElementById('phone_price');
-//     const phonePriceNunber = parseInt(phonePrice.innerText);
-//     const phoneNewPrice = newPhoneCount * 5;
-//     phonePrice.innerText = phoneNewPrice
-
-// })
-
-// // increse button
-
-// document.getElementById('phone_decrise').addEventListener('click', function() {
-//     const phoneCount = document.getElementById('phn_count');
-//     const phoneCountNumber = parseInt(phoneCount.value);
-//     const newPhoneCount = phoneCountNumber - 1
-//     if (phoneCountNumber <= 0) {
-//         return 0
-//     }
-//     phoneCount.value = newPhoneCount
-
-//     //update phone price;
-
-//     const phonePrice = document.getElementById('phone_price');
-//     const phonePriceNumber = parseInt(phonePrice.innerText);
-//     const phoneNewPrice = newPhoneCount * 5;
-//     phonePrice.innerText = phoneNewPrice;
-
-// })
+// remove product 1 = Iphone remove
+productRemove('remove_phone', 'cart-item1')
+productRemove('remove_case', 'cart-item2')

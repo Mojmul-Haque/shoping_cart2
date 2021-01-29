@@ -16,7 +16,7 @@
         <div class="container">
             <div class="cart">
                 <div class="col-md-12 col-lg-10 mx-auto">
-                    <div class="cart-item">
+                    <div class="cart-item" id="cart-item1">
                         <div class="row">
                             <div class="col-md-7 center-item">
                                 <img src="images/product-1.png" alt="">
@@ -29,13 +29,13 @@
                                     <input id="phn_count" type="text" class="form-control text-center" value="1">
                                     <button id="phn_increase" class="btn btn-default"><i class="fas fa-plus"></i></button>
                                 </div>
-                                <h5>$ <span id="phone_price">1219</span> </h5>
-                                <img src="images/remove.png" alt="" class="remove-item">
+                                <h5>$ <span id="phone_price">300</span> </h5>
+                                <img src="images/remove.png" alt="" id="remove_phone" class="remove-item">
                             </div>
                         </div>
                     </div>
 
-                    <div class="cart-item">
+                    <div class="cart-item" id="cart-item2">
                         <div class="row">
                             <div class="col-md-7 center-item mx-auto">
                                 <img src="images/product-2.png" alt="">
@@ -49,7 +49,7 @@
 
                                 </div>
                                 <h5>$ <span id="case_price">60</span></h5>
-                                <img src="images/remove.png" alt="" class="remove-item">
+                                <img src="images/remove.png" alt="" id="remove_case" class="remove-item">
                             </div>
                         </div>
                     </div>
@@ -64,9 +64,9 @@
                             </div>
 
                             <div class="col-md-4 status">
-                                <h5>$1,278</h5>
-                                <h5>$0</h5>
-                                <h5>$1,278</h5>
+                                <h5 id="subtotal_price">$360</h5>
+                                <h5 id="tax_amount">$0</h5>
+                                <h5 id="grand_total"> $360</h5>
                             </div>
                         </div>
                     </div>
